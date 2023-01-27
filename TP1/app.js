@@ -2,8 +2,20 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+
+let page_visits = {};
+
 app.use('/', (req, res, next) => {
-  console.log("["+ new Date() + "]: " + req.url)
+
+  let counter = page_visits[req.originalUrl];
+  if(counter || counter === 0) {
+    page_visits[req.originalUrl] = counter + 1;
+  } else {
+    page_visits[req.originalUrl] = 1;
+  }
+
+  date = new Date()
+  console.log(`[${date}]: ${req.url}`)
   next()
 })
 
@@ -43,6 +55,13 @@ app.get('/somme', (req, res) => {
   const b = parseInt(req.query.b)
   const somme = a + b
   res.send(`Le resultat est ${somme}`)
+})
+
+app.get('/metrics', (req, res) => {
+
+  res.json({"status" : "healthy", 
+            "requestsCount" : page_visits,
+            " uptime" : process.uptime()});
 })
 
 app.use('/', (req, res) => {
