@@ -45,7 +45,10 @@ app.get('/somme', (req, res) => {
   res.send(`Le resultat est ${somme}`)
 })
 
-
+app.use('/', (req, res) => {
+  res.status(404)
+  res.send("PAGE INVALIDE")
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
