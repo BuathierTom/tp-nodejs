@@ -76,6 +76,19 @@ async  function  updateMany(collectionName, filter, query) {
 		throw  e;
 	}
 }
+
+async  function  replace(collectionName, query, remplacement) {
+	try {
+		const  collection = getCollection(collectionName);
+		const  result = await  collection.replaceOne(query, remplacement);
+		return result;
+
+	} catch (e) {
+		console.log(`Erreur lors de l'execution de la fonction updateOne avec les parametres suivants: ${query}`);
+		console.log(e);
+		throw  e;
+	}
+}
 module.exports = {
 	findOne,
 	find,
@@ -83,4 +96,5 @@ module.exports = {
 	insertMany,
 	updateOne,
 	updateMany,
+	replace,
 }

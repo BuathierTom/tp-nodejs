@@ -1,4 +1,4 @@
-const { findOne, find, insertOne, insertMany, updateOne, updateMany } = require("../services/db/crud");
+const { findOne, find, insertOne, insertMany, updateOne, updateMany, replace } = require("../services/db/crud");
 
 async function findUser(req,res, next){
   try {
@@ -77,7 +77,24 @@ async function updateManyUser(req,res, next){
       };
 
       const result = await updateMany('users', filter, updateDoc);
-      console.log("L'update a bien eu lieu")
+      console.log("Les updates ont bien eu lieu")
+      return res.send(result)
+  } catch (e){
+    console.log(e)
+  }
+}
+
+async function replaceUser(req,res, next){
+  try {
+
+    const query = { name:  "Tom"};
+
+    const replacement = {
+      name: "Xx_Tom_xX",
+    };
+
+      const result = await replace('users', query, replacement);
+      console.log("Le grand remplacement a bien eu lieu")
       return res.send(result)
   } catch (e){
     console.log(e)
@@ -97,4 +114,5 @@ module.exports = {
   insertManyUser,
   updateOneUser,
   updateManyUser,
+  replaceUser,
 };
