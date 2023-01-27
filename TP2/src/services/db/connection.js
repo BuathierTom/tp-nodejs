@@ -1,11 +1,11 @@
 const { MongoClient } = require('mongodb');
 const conf = require("../../../conf.json")
 // Connection URI
-const url = conf.TP2.databaseUrl;
-const dbName = conf.TP2.databaseName;
+const url = conf.databaseUrl;
+const dbName = conf.databaseName;
 
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client = new MongoClient(url);
 
 async function connectTodB() {
     try {

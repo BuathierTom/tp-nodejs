@@ -1,1 +1,4 @@
-{"tp2" : ""}
+{
+    "databaseUrl" : "mongodb://localhost:27017",
+    "databaseName" : "NODE_TP2"
+}
