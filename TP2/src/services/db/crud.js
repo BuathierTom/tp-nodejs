@@ -11,3 +11,5 @@ async  function  findOne(collectionName, query, options = {}) {
 		throw  e;
 	}
 }
+
+module.exports = {findOne}
