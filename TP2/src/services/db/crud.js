@@ -51,10 +51,36 @@ async  function  insertMany(collectionName, query, options = {}) {
 	}
 }
 
+async  function  updateOne(collectionName, filter, query, options = {}) {
+	try {
+		const  collection = getCollection(collectionName);
+		const  result = await  collection.updateOne(filter, query, options);
+		return result;
+
+	} catch (e) {
+		console.log(`Erreur lors de l'execution de la fonction updateOne avec les parametres suivants: ${query}`);
+		console.log(e);
+		throw  e;
+	}
+}
+
+async  function  updateMany(collectionName, filter, query) {
+	try {
+		const  collection = getCollection(collectionName);
+		const  result = await  collection.updateMany(filter, query);
+		return result;
+
+	} catch (e) {
+		console.log(`Erreur lors de l'execution de la fonction updateOne avec les parametres suivants: ${query}`);
+		console.log(e);
+		throw  e;
+	}
+}
 module.exports = {
 	findOne,
 	find,
 	insertOne,
 	insertMany,
-
+	updateOne,
+	updateMany,
 }
