@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.use('/', (req, res, next) => {
+  console.log("["+ new Date() + "]: " + req.url)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
@@ -39,6 +44,7 @@ app.get('/somme', (req, res) => {
   const somme = a + b
   res.send(`Le resultat est ${somme}`)
 })
+
 
 
 app.listen(port, () => {
