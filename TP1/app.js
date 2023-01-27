@@ -28,6 +28,19 @@ app.get('/redirectMe', (req, res) => {
   res.redirect('https://www.iut-littoral.fr/')  
 })
 
+app.get('/users/:name', (req, res) => {
+  const name = req.params.name
+  res.send(`Bienvenue sur la page de ${name}`)
+})
+
+app.get('/somme', (req, res) => {
+  const a = parseInt(req.query.a)
+  const b = parseInt(req.query.b)
+  const somme = a + b
+  res.send(`Le resultat est ${somme}`)
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
