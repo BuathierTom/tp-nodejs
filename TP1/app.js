@@ -25,7 +25,7 @@ app.get('/img', (req, res) => {
 })
 
 app.get('/redirectMe', (req, res) => {
-  res.download('./img/cat.jpg')  
+  res.redirect('https://www.iut-littoral.fr/')  
 })
 
 app.listen(port, () => {
