@@ -12,7 +12,7 @@ app.use('/', (req, res, next) => {
   } else {
     page_visits[req.originalUrl] = 1;
   }
-  
+
   date = new Date().toISOString()
   console.log(`[${date}]: ${req.url}`)
   next()
@@ -60,7 +60,7 @@ app.get('/metrics', (req, res) => {
 
   res.json({"status" : "healthy", 
             "requestsCount" : page_visits,
-            " uptime" : process.uptime()});
+            " uptime" : process.uptime().toFixed(2)});
 })
 // Question 9
 app.use('/', (req, res) => {
