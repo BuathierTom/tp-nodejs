@@ -89,6 +89,32 @@ async  function  replace(collectionName, query, remplacement) {
 		throw  e;
 	}
 }
+
+async  function  deleteOne(collectionName, query) {
+	try {
+		const  collection = getCollection(collectionName);
+		const  result = await  collection.deleteOne(query);
+		return result;
+
+	} catch (e) {
+		console.log(`Erreur lors de l'execution de la fonction updateOne avec les parametres suivants: ${query}`);
+		console.log(e);
+		throw  e;
+	}
+}
+
+async  function  deleteMany(collectionName, query) {
+	try {
+		const  collection = getCollection(collectionName);
+		const  result = await  collection.deleteMany(query);
+		return result;
+
+	} catch (e) {
+		console.log(`Erreur lors de l'execution de la fonction updateOne avec les parametres suivants: ${query}`);
+		console.log(e);
+		throw  e;
+	}
+}
 module.exports = {
 	findOne,
 	find,
@@ -97,4 +123,6 @@ module.exports = {
 	updateOne,
 	updateMany,
 	replace,
+	deleteOne,
+	deleteMany
 }

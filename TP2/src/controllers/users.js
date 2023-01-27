@@ -1,4 +1,4 @@
-const { findOne, find, insertOne, insertMany, updateOne, updateMany, replace } = require("../services/db/crud");
+const { findOne, find, insertOne, insertMany, updateOne, updateMany, replace, deleteOne, deleteMany } = require("../services/db/crud");
 
 async function findUser(req,res, next){
   try {
@@ -101,6 +101,26 @@ async function replaceUser(req,res, next){
   }
 }
 
+async function deleteOneUser(req,res, next){
+  try {
+      const result = await deleteOne('users', { name: "Respirateur" });
+      console.log("Le grand delete a bien eu lieu")
+      return res.send(result)
+  } catch (e){
+    console.log(e)
+  }
+}
+
+async function deleteManyUser(req,res, next){
+  try {
+      const result = await deleteMany('users', { age: "32" });
+      console.log("Le grand delete a bien eu lieu")
+      return res.send(result)
+  } catch (e){
+    console.log(e)
+  }
+}
+
 async function createUser(req, res, next) {
   console.log("Creation ....");
   res.send("Creation ....");
@@ -115,4 +135,6 @@ module.exports = {
   updateOneUser,
   updateManyUser,
   replaceUser,
+  deleteOneUser,
+  deleteManyUser
 };
