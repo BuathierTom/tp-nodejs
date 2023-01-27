@@ -13,6 +13,4 @@ router.get("/replace", replaceUser);
 router.get("/deleteOne", deleteOneUser);
 router.get("/deleteMany", deleteManyUser);
 
-
-
 module.exports = router;
