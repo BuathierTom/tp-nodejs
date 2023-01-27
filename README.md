@@ -2,7 +2,7 @@
 
 ## TP1
 
-* Toutes les routes sont faites et le TP est fini
+* Toutes les routes sont faites et le TP est fini !
 
 ## TP2
 
