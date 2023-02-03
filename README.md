@@ -6,4 +6,30 @@
 
 ## TP2
 
-* Pas encore commencer
+## Conception d'entités
+
+### Utilisateur :
+
+* ID 
+* Pseudo 
+* Age
+
+### Wachtlist :
+
+* ID
+* ID utilisateur 
+* Listes de films
+    * ID Film 
+    * Statut
+* Note de l'utilisateur
+
+### Films :
+
+* ID
+* Titre
+* Date
+* Genre
+* Durée
+* Langue
+* Acteurs
+* Type (Film ou Serie)
