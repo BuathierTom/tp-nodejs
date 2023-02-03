@@ -24,7 +24,7 @@ L'ensemble de notre code sera dans un répertoire **src/** (cela permet de sépa
 Le fichier **app.js** nous permettra de lancer notre API.
 
 Le dossier **routes/** contiendra les différentes routes de notre api. Une bonne pratique est de faire une route par type d'entité. Par exemple, les actions liés aux utilisateurs commenceront tous par `/users`.  
-On trouve dans ce répertoire le fichier **index.js** qui va relier nos différentes routes et gérer tout ce qu'il se passe au niveau de la racine de notre api.
+On trouve dans ce répertoire le fichier **index.js** qui va relier nos différentes routes et gérer tous ce qu'il se passe au niveau de la racine de notre api.
 
 Le dossier **repositories/** contiendra l'ensemble des appels à des ressources externes (APIs, services ou encore bases de données).
 
@@ -168,32 +168,37 @@ Avant de pouvoir être ajouté à une watchlist, l'utilisateur devra ajouter l'i
 
 Nous utiliserons [cette api](https://www.omdbapi.com/) pour rechercher des items et remplir le registre.
 
+Vous trouverez ci dessous une liste de fonctionnalités. Elles sont volontairement peu détaillées, si vous avez des questions, je jouerai le rôle du client. 
 
-Voici les différentes fonctionnalités demandées pour notre API:
+Avant de commencer à coder, identifiez les différentes entités à gérer et proposez un modèle de données pour chaque entités. 
+*Vous pouvez utiliser le format json schema (voir section Validation des entités).*
+
+Faites valider votre conception.
+Une fois cela fait, créer les collections mongodb associées à vos entités dans une base de données "watchlist" via compass.
+
+###  Fonctionnalités minimales de la watchlist
  - Créer un utilisateur
- - Modifier les informations personnelles d'un utilisateur
- - Ajouter un item au registre (attention aux doublons !)
+ - Ajouter un item au registre
  - Créer une watchlist pour un utilisateur
  - Ajouter un item dans une watchlist
  - Modifier le statut d'un item dans une watchlist 
-
-### Bonus
-
- - Supprimer un item d'une watchlist
- - Supprimer une watchlist
- - Lister les items du registre 
- - Donner la possibilité de filtrer les éléments du registre en fonction de l'année, de la langue et du score imdbRating
+  - Afficher les items du registre (avec possibilité de filtrer)
  - Récupérer la liste des utilisateurs
  - Récupérer la liste des watchlists d'un utilisateur
  - Récupérer le contenu d'une watchlist
+ 
+### Fonctionnalités supplémentaires:
+ - Supprimer un item d'une watchlist
+ - Modifier les informations personnelles d'un utilisateur
+ - Supprimer une watchlist
+ - Ajouter une watchlist en favori
  - Partager sa watchlist avec un autre utilisateur
- - Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item.
+ - Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item d'une watchlist.
+ - Mettre en place une page permettant de tester les routes de notre api*
+ 
+**Voir section  Server side rendering*
 
-Les fonctionnalités ne sont pas très détaillées, si vous avez des questions, je jouerai le rôle du client.
-
-Identifiez les différentes entités à gérer et proposez un modèle de données pour chaque entité.
-
-Une fois votre conception validée, créez les collections mongodb associées à vos entités dans la base de données "watchlist" via compass.
+Vous pouvez également implémenter vos propres fonctionnalités si vous avez des idées.
 
 ### Appel à l'API omdbapi
 
@@ -210,15 +215,77 @@ Cependant, je vous conseille d'utiliser le package [axios](https://www.npmjs.com
 *Pour suivre la structure du projet, le code relatif aux appels omdbapi devra être dans le répertoire `repositories`*
 
 
-### Bonus
+### Validation des entités
 
-Si vous avez terminé le TP en avance, vous pouvez implémenter vos prores fonctionnalités.
-Sinon, voici quelques pistes à explorer:
-- Mettre en place un système de log avec [morgan](https://www.npmjs.com/package/morgan)
-- Mettre en place des tests unitaires avec [jest](https://jestjs.io/fr/)
-- Sécuriser vos routes avec [express-validator](https://express-validator.github.io/docs)
+Une bonne pratique est de valider le format des données avant une insertion en bdd. Cela permet de s'assurer d'avoir un format uniforme pour chaque entité de la collection.  
 
-Je suis également ouvert aux suggestions si un sujet vous intéresse en particulier !
+Un moyen simple de faire cela est d'uiliser des jsonschema.
+
+Dans un premier temps, il faudra créer un jsonchema pour chaque type d'entité de votre API.  
+Voici un exemple de jsonschema: .  
+
+```json
+{
+	"title": "Ecran",
+	"description": "Description d un ecran",
+	"type": "object",
+	"properties": {
+		"reference": {
+		"type": "string"
+	},
+	"numero_serie": {
+		"type": "number"
+	},
+	"fabriquant": {
+		"type": "object",
+		"properties": {
+			"nom": {
+				"type": "string"
+			},
+			"mail_support": {
+				"type": "string",
+				"format": "email"
+			}
+		}
+	},
+	"composants": {
+		"type": "array",
+		"items": {
+			"type": "string"
+		}
+	}
+	},
+	"required": ["reference"],
+	"additionalProperties": false
+}
+```
+
+Je vous conseille si besoin de regarder également [cette page](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-introduction) qui détaille les différents keywords.
+
+Voici également deux mots clés utiles (utilisable dans la description d'objets):
+- required: permet de préciser des champs obligatoires (sans la présence de ces champs, la validation échoue)
+- additionalProperties: Booleen permettant ou non la présence de champs non décrits dans votre jsonschema.
+
+Pour notre API, je vous propose d'utiliser le package npm [jsonschema](https://www.npmjs.com/package/jsonschema) qui permet de valider simplement des objets en fonction d'un jsonschema.  
+
+### Server side rendering
+
+Express permet de faire du rendu server. C'est à dire qu'il est capable de retourner des pages web grâce à une vue et à un moteur de modèle.  
+
+Je vous propose d'utiliser pug afin de créer une page de présentation permettant d'utiliser les différentes routes de votre api à l'image de celle d'[omdbapi](https://www.omdbapi.com/). Vous trouverez un exemple d'implémentation sur le repository contenant les cours.
+
+Voir [la documentation de pug](https://www.npmjs.com/package/pug) et [res.render](https://expressjs.com/fr/guide/using-template-engines.html) pour plus d'informations
+
+
+### Rendu du TP
+
+Il suffit de me transmettre votre repository github. Je téléchargerai vos repos le **9 Mars 2023 vers 20h**. J'invite ceux qui ne m'ont pas encore envoyé leur repository de le faire **immédiatement**. En cas de repository absent lors de la deadline, une **grosse** pénalité sera appliquée à la note.   
+
+Une attention toute particulière sera apportée à la propreté de votre repository ainsi qu'a la qualité de votre code (notamment au niveau du respect de la structure vue pendant le cours).
+
+N'hésitez pas à me contacter via discord si vous avez des questions après la fin du cours:
+Midway#1115
+
 
 ### Ressources
 

@@ -9,22 +9,26 @@ const { createUser,
         updateManyUser, 
         replaceUser, 
         deleteOneUser, 
-        deleteManyUser } = require("../controllers/users");
+        deleteManyUser,
+        insertFilm } = require("../controllers/users");
 
 
 
 // Créé un utilisateur
-router.get("/create", createUser)
+router.post("/create", createUser)
 // Pour regarder si ils existent
-router.get("/findMult", findMultipleUser);
+router.get("/userList", findMultipleUser);
+// Insere un film dans la base watchlist
+router.post("/addFilm", insertFilm)
 
 
+// J'utiliserai plus tard ces fonctions
 
 // router.get("/create", createUser);
 // router.get("/findOne", findUser);
 // router.get("/insertOne", insertOneUser);
 // router.get("/insertMany", insertManyUser);
-// router.get("/updateOne", updateOneUser);
+// router.get("/update", updateOneUser);
 // router.get("/updateMany", updateManyUser);
 // router.get("/replace", replaceUser);
 // router.get("/deleteOne", deleteOneUser);
