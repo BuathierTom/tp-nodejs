@@ -29,6 +29,10 @@ async function createUser(req, res, next) {
   }
 }
 
+
+// Fonctions que je réutiliserai plus tard
+
+
 async function findUser(req,res, next){
   try {
       const result = await findOne('users', {name: "Zob"});
