@@ -61,6 +61,35 @@ async function insertFilm(req, res, next) {
   }
 }
 
+async function createWachtList(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+    const id = uuidv4();
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      // On verifie qu'il n'y pas de nom
+      if (verif_WL) {
+        return res.send({Error: `Error, la wachtlist ${nom_WL} existe deja`});
+      }
+      const result = await insertOne('Watchlists', {
+        id: id, 
+        id_user: verif_user.id, 
+        nom_WL: nom_WL
+        });
+      console.log(`Création de la WachtList: ${nom_WL}`)
+      return res.send(result)
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+    
+  } catch (e){
+    console.log(e)
+  }
+}
+
 // Fonctions que je réutiliserai plus tard
 
 
@@ -196,5 +225,6 @@ module.exports = {
   replaceUser,
   deleteOneUser,
   deleteManyUser,
-  insertFilm
+  insertFilm,
+  createWachtList
 };
