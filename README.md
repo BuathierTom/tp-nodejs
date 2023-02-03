@@ -18,6 +18,7 @@
 
 * ID
 * ID utilisateur 
+* Nom de la WatchList
 * Listes de films
     * ID Film 
     * Statut
@@ -26,11 +27,12 @@
 ### Films :
 
 * ID
-* *(Photo)*
 * Titre
 * Date
 * Genre
 * Durée
-* Langue
+* Réalisateur
 * Acteurs
+* Langage
+* Description
 * Type (Film ou Serie)
