@@ -53,7 +53,7 @@ async function insertFilm(req, res, next) {
       Plot: film.Plot,
       Type: film.Type       
     });
-    console.log(`Insertion du film ${search} fait !`)
+    console.log(`Insertion du film : ${search} fait !`)
     return res.send(result)
 
   } catch (e){
