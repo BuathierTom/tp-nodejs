@@ -31,7 +31,7 @@ async function createUser(req, res, next) {
 
 async function findUser(req,res, next){
   try {
-      const result = await findOne('users', {name: "Tom"});
+      const result = await findOne('users', {name: "Zob"});
       return res.send(result)
   } catch (e){
     console.log(e)

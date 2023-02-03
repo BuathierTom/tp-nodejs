@@ -34,4 +34,3 @@
 * Langue
 * Acteurs
 * Type (Film ou Serie)
-
