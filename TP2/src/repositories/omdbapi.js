@@ -3,7 +3,7 @@ var axios = require("axios").default;
 var options = {
   method: 'GET',
   url: 'http://www.omdbapi.com/',
-  params: {s: 'The 100', apikey: '43a891a3'}
+  params: {s: 'The 100', apikey: '53d5de34'}
 };
 
 axios.request(options).then(function (response) {
