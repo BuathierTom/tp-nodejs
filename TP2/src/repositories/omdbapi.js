@@ -1,13 +1,14 @@
 var axios = require("axios").default;
+const conf = require("../../conf.json")
+const apikey = conf.apikey
 
-var options = {
-  method: 'GET',
-  url: 'http://www.omdbapi.com/',
-  params: {s: 'The 100', apikey: '53d5de34'}
-};
+async function getFilm(search) {
+	const url = 'http://www.omdbapi.com/?t=' + search + '&apikey=' + apikey
 
-axios.request(options).then(function (response) {
-  console.log(response.data);
-}).catch(function (error) {
-  console.error(error);
-});
+	const reponse = await axios.get(url)
+  return reponse.data
+}
+
+module.exports = {
+  getFilm,
+}
