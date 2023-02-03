@@ -1,4 +1,12 @@
-const { findOne, find, insertOne, insertMany, updateOne, updateMany, replace, deleteOne, deleteMany } = require("../services/db/crud");
+const { findOne, 
+        find, 
+        insertOne, 
+        insertMany, 
+        updateOne, 
+        updateMany, 
+        replace, 
+        deleteOne, 
+        deleteMany } = require("../services/db/crud");
 
 async function findUser(req,res, next){
   try {

@@ -1,6 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { createUser, findUser, findMultipleUser, insertOneUser, insertManyUser, updateOneUser, updateManyUser, replaceUser, deleteOneUser, deleteManyUser } = require("../controllers/users");
+const { createUser, 
+        findUser, 
+        findMultipleUser, 
+        insertOneUser, 
+        insertManyUser, 
+        updateOneUser, 
+        updateManyUser, 
+        replaceUser, 
+        deleteOneUser, 
+        deleteManyUser } = require("../controllers/users");
 
 router.get("/create", createUser);
 router.get("/findOne", findUser);

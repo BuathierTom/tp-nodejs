@@ -176,6 +176,9 @@ Voici les différentes fonctionnalités demandées pour notre API:
  - Créer une watchlist pour un utilisateur
  - Ajouter un item dans une watchlist
  - Modifier le statut d'un item dans une watchlist 
+
+### Bonus
+
  - Supprimer un item d'une watchlist
  - Supprimer une watchlist
  - Lister les items du registre 
