@@ -11,7 +11,8 @@ const { createUser,
         deleteOneUser, 
         deleteManyUser,
         insertFilm,
-        createWachtList } = require("../controllers/users");
+        createWachtList,
+        insertWachtList } = require("../controllers/users");
 
 
 
@@ -23,6 +24,8 @@ router.get("/userList", findMultipleUser)
 router.post("/addFilm", insertFilm)
 // Créé une watchlist pour un utilisateur
 router.post("/createWL", createWachtList)
+// Insere un film la watchlist d'un utilisateur
+router.post("/addFilmWL", insertWachtList)
 
 // J'utiliserai plus tard ces fonctions
 
