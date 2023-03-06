@@ -55,7 +55,7 @@
 
 - [ ] Supprimer un item d'une watchlist
 - [ ] Modifier les informations personnelles d'un utilisateur
-- [ ] Supprimer une watchlist
+- [x] Supprimer une watchlist
 - [ ] Ajouter une watchlist en favori
 - [ ] Partager sa watchlist avec un autre utilisateur
 - [ ] Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item d'une watchlist.

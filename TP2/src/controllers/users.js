@@ -146,6 +146,31 @@ async function insertWachtList(req, res, next){
   }
 }
 
+async function deleteWatchList(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        const result = await deleteOne('Watchlists', { nom_WL: nom_WL });
+        console.log("Le grand delete a bien eu lieu")
+        return res.send(result)
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+
+
+  } catch (e){
+    console.log(e)
+  }
+}
+
 // Fonctions que je réutiliserai plus tard
 
 
@@ -283,5 +308,6 @@ module.exports = {
   deleteManyUser,
   insertFilm,
   createWachtList,
-  insertWachtList
+  insertWachtList,
+  deleteWatchList
 };
