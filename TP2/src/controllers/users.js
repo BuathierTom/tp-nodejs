@@ -65,7 +65,7 @@ async function createWachtList(req, res, next){
   try {
     const pseudo = req.body.pseudo
     const nom_WL = req.body.nom_WL
-    const id = uuidv4();
+    const id = uuidv4();  
 
     const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
     // On verifie qu'il y a bien l'utilisateur qui existe
@@ -97,7 +97,7 @@ async function insertWachtList(req, res, next){
     const nom_WL = req.body.nom_WL
     const titre = req.body.titre
     const statut = req.body.statut
-    let note = req.body.note
+    const note = req.body.note
 
     const listStatut = [ "A voir", "En cours", "Terminé", "Abandonné" ]
 
@@ -115,24 +115,22 @@ async function insertWachtList(req, res, next){
             return res.send({Error: `Error, Le statut n'est pas valide`});
           }
           // On verifie la note
-          if (note === undefined) {
-            note = "N/A";
-          } else if (note >= 20 && note <= 20) {
-            console.log("okey")
+          if (note === "N/A") {
+            console.log("Note non donnée")
+          } else if (parseInt(note) <= 20 && parsInt(note) >= 0) {
+            console.log("Note valide")
           } else {
             return res.send({Error: `Error, La note doit etre entre 0 et 20`});
           }
           // On l'insere dans la table Watchlist
-          const result = await updateOne('Watchlists', { 
-            $push: {
-              ListeFilms: {
+          const result = await updateOne('Watchlists', {id: verif_WL.id}, {$push: {ListeFilms:
+              {
                 id_film: verif_Film.id,
-                statut: statut
-              },
-              note: note
-            }
-            
-          });
+                statut: statut,
+                note: note
+              }
+            }}
+          );
 
           console.log(`Création de la WachtList: ${nom_WL}`)
           return res.send(result)
