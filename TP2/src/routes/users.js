@@ -18,7 +18,7 @@ const { createUser,
 
 // Créé un utilisateur
 router.post("/createUser", createUser)
-// Pour regarder si ils existent
+// Récupérer la liste des utilisateurs
 router.get("/userList", findMultipleUser)
 // Insere un film dans la base watchlist
 router.post("/addFilm", insertFilm)
@@ -26,6 +26,7 @@ router.post("/addFilm", insertFilm)
 router.post("/createWL", createWachtList)
 // Insere un film la watchlist d'un utilisateur
 router.post("/addFilmWL", insertWachtList)
+// Récuperer 
 
 // J'utiliserai plus tard ces fonctions
 
