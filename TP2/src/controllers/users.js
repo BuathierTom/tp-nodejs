@@ -65,7 +65,7 @@ async function createWachtList(req, res, next){
   try {
     const pseudo = req.body.pseudo
     const nom_WL = req.body.nom_WL
-    const id = uuidv4();
+    const id = uuidv4();  
 
     const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
     // On verifie qu'il y a bien l'utilisateur qui existe
@@ -78,13 +78,69 @@ async function createWachtList(req, res, next){
       const result = await insertOne('Watchlists', {
         id: id, 
         id_user: verif_user.id, 
-        nom_WL: nom_WL
+        nom_WL: nom_WL,
+        ListeFilms : []
         });
       console.log(`Création de la WachtList: ${nom_WL}`)
       return res.send(result)
     }
     return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
     
+  } catch (e){
+    console.log(e)
+  }
+}
+
+async function insertWachtList(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+    const titre = req.body.titre
+    const statut = req.body.statut
+    const note = req.body.note
+
+    const listStatut = [ "A voir", "En cours", "Terminé", "Abandonné" ]
+
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        const verif_Film = await findOne('Films', {Title: titre})
+        // On verifie qu'il y a bien le film si il existe ou pas dans la table
+        if (verif_Film){
+          if (!listStatut.includes(statut)){
+            return res.send({Error: `Error, Le statut n'est pas valide`});
+          }
+          // On verifie la note
+          if (note === "N/A") {
+            console.log("Note non donnée")
+          } else if (parseInt(note) <= 20 && parsInt(note) >= 0) {
+            console.log("Note valide")
+          } else {
+            return res.send({Error: `Error, La note doit etre entre 0 et 20`});
+          }
+          // On l'insere dans la table Watchlist
+          const result = await updateOne('Watchlists', {id: verif_WL.id}, {$push: {ListeFilms:
+              {
+                id_film: verif_Film.id,
+                statut: statut,
+                note: note
+              }
+            }}
+          );
+
+          console.log(`Création de la WachtList: ${nom_WL}`)
+          return res.send(result)
+            
+        }
+        return res.send({Error: `Error, le film ${titre} n'existe pas dans la table Films`});
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
   } catch (e){
     console.log(e)
   }
@@ -226,5 +282,6 @@ module.exports = {
   deleteOneUser,
   deleteManyUser,
   insertFilm,
-  createWachtList
+  createWachtList,
+  insertWachtList
 };
