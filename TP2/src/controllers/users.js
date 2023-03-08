@@ -320,6 +320,35 @@ async function updateItemWL(req, res, next){
 
 }
 
+async function deleteFilmWL(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+    const titre = req.body.titre
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        const verif_Film = await findOne('Films', {Title: titre})
+        // On verifie qu'il y a bien le film si il existe ou pas dans la table
+        if (verif_Film){
+          const result = await updateOne('Watchlists', {id: verif_WL.id}, {$pull: {ListeFilms: {id_film: verif_Film.id}}});
+          console.log("Le film a bien été supprimé")
+          return res.send(result)
+        }
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+  } catch (e){
+    console.log(e)
+  }
+
+}
+
 // Fonctions que je réutiliserai plus tard
 
 
@@ -464,5 +493,6 @@ module.exports = {
   findWatchListUser,
   findFilmWL,
   noteWatchList,
-  updateItemWL
+  updateItemWL,
+  deleteFilmWL
 };
