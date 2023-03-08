@@ -59,5 +59,5 @@
 - [x] Ajouter une watchlist en favori
 - [x] Récupérer la liste des watchlists misent en favori
 - [ ] Partager sa watchlist avec un autre utilisateur
-- [ ] Donner la possibilité d'écrire une note personnelle sur une watchlist ou un item d'une watchlist.
+- [ ] Donner la possibilité d'écrire une note personnelle sur une watchlist.
 - [ ] Mettre en place une page permettant de tester les routes de notre api*
