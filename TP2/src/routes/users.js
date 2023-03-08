@@ -13,7 +13,8 @@ const { createUser,
         insertFilm,
         createWachtList,
         insertWachtList,
-        deleteWatchList } = require("../controllers/users");
+        deleteWatchList,
+        favorisWatchList } = require("../controllers/users");
 
 
 
@@ -29,6 +30,10 @@ router.post("/createWL", createWachtList)
 router.post("/addFilmWL", insertWachtList)
 // Supprimer une watchlist d'un utilisateur
 router.post("/deleteWL", deleteWatchList)
+// Ajouter une WatchList en favoris
+router.post("/favorisWL", favorisWatchList)
+
+
 
 // J'utiliserai plus tard ces fonctions
 

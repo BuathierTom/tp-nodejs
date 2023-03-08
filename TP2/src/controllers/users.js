@@ -79,6 +79,7 @@ async function createWachtList(req, res, next){
         id: id, 
         id_user: verif_user.id, 
         nom_WL: nom_WL,
+        favoris: false,
         ListeFilms : []
         });
       console.log(`Création de la WachtList: ${nom_WL}`)
@@ -170,6 +171,32 @@ async function deleteWatchList(req, res, next){
     console.log(e)
   }
 }
+
+async function favorisWatchList(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        const result = await updateOne('Watchlists', {id: verif_WL.id}, {$set: {favoris: true}});
+        console.log("La wachtlist est maintenant en favoris")
+        return res.send(result)
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+  } catch (e){
+    console.log(e)
+  }
+
+}
+
+
 
 // Fonctions que je réutiliserai plus tard
 
@@ -309,5 +336,6 @@ module.exports = {
   insertFilm,
   createWachtList,
   insertWachtList,
-  deleteWatchList
+  deleteWatchList,
+  favorisWatchList
 };
