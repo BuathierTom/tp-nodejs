@@ -236,6 +236,28 @@ async function findWatchListUser(req, res, next){
   }
 }
 
+async function findFilmWL(req, res, next){
+  try{
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        return res.send(verif_WL.ListeFilms);
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+
+  }catch(e){
+    console.log(e)
+  }
+
+}
 
 // Fonctions que je réutiliserai plus tard
 
@@ -378,5 +400,6 @@ module.exports = {
   deleteWatchList,
   favorisWatchList,
   favorisList,
-  findWatchListUser
+  findWatchListUser,
+  findFilmWL
 };
