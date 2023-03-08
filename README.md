@@ -53,7 +53,7 @@
 
 #### - Falcultatif :
 
-- [ ] Supprimer un item d'une watchlist
+- [x] Supprimer un item d'une watchlist
 - [ ] Modifier les informations personnelles d'un utilisateur
 - [x] Supprimer une watchlist
 - [x] Ajouter une watchlist en favori
