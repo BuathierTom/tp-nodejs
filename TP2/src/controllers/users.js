@@ -204,8 +204,10 @@ async function favorisList(req, res, next){
     // On verifie qu'il y a bien l'utilisateur qui existe
     if (verif_user) {
       const verif_WL = await find('Watchlists', {id_user: verif_user.id, favoris: true});
-      const result=[]
-      await verif_WL.forEach((item)=>{result.push(item)});
+      const result = []
+      await verif_WL.forEach((item)=>{
+        result.push(item)
+      });
       return res.send(result)
     }
     return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
@@ -214,6 +216,25 @@ async function favorisList(req, res, next){
   }
 }
 
+async function findWatchListUser(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      const verif_WL = await find('Watchlists', {id_user: verif_user.id});
+      const result = []
+      await verif_WL.forEach((item)=>{
+        result.push(item)
+      });
+      return res.send(result)
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+  } catch (e){
+    console.log(e)
+  }
+}
 
 
 // Fonctions que je réutiliserai plus tard
@@ -356,5 +377,6 @@ module.exports = {
   insertWachtList,
   deleteWatchList,
   favorisWatchList,
-  favorisList
+  favorisList,
+  findWatchListUser
 };
