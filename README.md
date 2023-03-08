@@ -6,37 +6,6 @@
 
 ## TP2
 
-## Conception d'entités
-
-### Utilisateur :
-
-* ID 
-* Pseudo 
-* Age
-
-### Wachtlist :
-
-* ID
-* ID utilisateur 
-* Nom de la WatchList
-* Listes de films
-    * ID Film 
-    * Statut
-* Note de l'utilisateur
-
-### Films :
-
-* ID
-* Titre
-* Date
-* Genre
-* Durée
-* Réalisateur
-* Acteurs
-* Langage
-* Description
-* Type (Film ou Serie)
-
 ### Fonctionnalité de ma WatchList : 
 
 #### - Obligatoire :
@@ -61,3 +30,35 @@
 - [ ] Partager sa watchlist avec un autre utilisateur
 - [x] Donner la possibilité d'écrire une note personnelle sur une watchlist.
 - [ ] Mettre en place une page permettant de tester les routes de notre api*
+
+### Conception d'entités
+
+#### Utilisateur :
+
+* ID 
+* Pseudo 
+* Age
+
+#### Wachtlist :
+
+* ID
+* ID utilisateur 
+* Nom de la WatchList
+* Listes de films
+    * ID Film 
+    * Statut
+* Note de l'utilisateur
+
+#### Films :
+
+* ID
+* Titre
+* Date
+* Genre
+* Durée
+* Réalisateur
+* Acteurs
+* Langage
+* Description
+* Type (Film ou Serie)
+
