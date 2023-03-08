@@ -15,7 +15,8 @@ const { createUser,
         insertWachtList,
         deleteWatchList,
         favorisWatchList,
-        favorisList } = require("../controllers/users");
+        favorisList,
+        findWatchListUser } = require("../controllers/users");
 
 
 
@@ -35,6 +36,8 @@ router.post("/deleteWL", deleteWatchList)
 router.post("/favorisWL", favorisWatchList)
 // Permet d'afficher les watchlists en favoris en fonction d'un utilisateur
 router.get("/favList", favorisList)
+// Permet d'afficher les watchlists en fonction d'un utilisateur
+router.get("/findWL", findWatchListUser)
 
 
 // J'utiliserai plus tard ces fonctions
