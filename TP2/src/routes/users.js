@@ -17,7 +17,8 @@ const { createUser,
         favorisWatchList,
         favorisList,
         findWatchListUser,
-        findFilmWL } = require("../controllers/users");
+        findFilmWL,
+        noteWatchList } = require("../controllers/users");
 
 
 
@@ -41,6 +42,8 @@ router.get("/favList", favorisList)
 router.get("/findWL", findWatchListUser)
 // Permet d'afficher les films d'une watchlist
 router.get("/findFilmWL", findFilmWL)
+// Permet d'écrire une note sur une watchlist (Une sorte de description) 
+router.post("/noteWL", noteWatchList)
 
 
 // J'utiliserai plus tard ces fonctions
