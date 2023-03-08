@@ -49,7 +49,7 @@
 - [ ] Afficher les items du registre (avec possibilité de filtrer)
 - [x] Récupérer la liste des utilisateurs
 - [x] Récupérer la liste des watchlists d'un utilisateur
-- [ ] Récupérer le contenu d'une watchlist
+- [x] Récupérer le contenu d'une watchlist
 
 #### - Falcultatif :
 
