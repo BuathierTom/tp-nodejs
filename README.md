@@ -31,6 +31,8 @@
 - [x] Donner la possibilité d'écrire une note personnelle sur une watchlist.
 - [ ] Mettre en place une page permettant de tester les routes de notre api*
 
+#
+
 ### Conception d'entités
 
 #### Utilisateur :
