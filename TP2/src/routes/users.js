@@ -19,7 +19,8 @@ const { createUser,
         findWatchListUser,
         findFilmWL,
         noteWatchList,
-        updateItemWL } = require("../controllers/users");
+        updateItemWL,
+        deleteFilmWL } = require("../controllers/users");
 
 
 
@@ -47,6 +48,8 @@ router.get("/findFilmWL", findFilmWL)
 router.post("/noteWL", noteWatchList)
 // Permet de modifier le statut d'un item dans une watchlist
 router.post("/updateItemWL", updateItemWL)
+// Supprimer un film d'une watchlist
+router.post("/deleteFilmWL", deleteFilmWL)
 
 
 // J'utiliserai plus tard ces fonctions
