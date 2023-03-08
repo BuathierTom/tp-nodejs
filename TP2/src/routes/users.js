@@ -18,7 +18,8 @@ const { createUser,
         favorisList,
         findWatchListUser,
         findFilmWL,
-        noteWatchList } = require("../controllers/users");
+        noteWatchList,
+        updateItemWL } = require("../controllers/users");
 
 
 
@@ -44,6 +45,8 @@ router.get("/findWL", findWatchListUser)
 router.get("/findFilmWL", findFilmWL)
 // Permet d'écrire une note sur une watchlist (Une sorte de description) 
 router.post("/noteWL", noteWatchList)
+// Permet de modifier le statut d'un item dans une watchlist
+router.post("/updateItemWL", updateItemWL)
 
 
 // J'utiliserai plus tard ces fonctions
