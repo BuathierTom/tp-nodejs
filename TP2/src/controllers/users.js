@@ -283,6 +283,43 @@ async function noteWatchList(req, res, next){
   }
 
 }
+
+async function updateItemWL(req, res, next){
+  try {
+    const pseudo = req.body.pseudo
+    const nom_WL = req.body.nom_WL
+    const titre = req.body.titre
+    const statut = req.body.statut
+
+    const listStatut = [ "A voir", "En cours", "Terminé", "Abandonné" ]
+
+
+    const verif_user = await findOne('Utilisateurs', {pseudo: pseudo})
+    // On verifie qu'il y a bien l'utilisateur qui existe
+    if (verif_user) {
+      // On verifie qu'il y a bien la wachtlist qui existe
+      const verif_WL = await findOne('Watchlists', {id_user: verif_user.id, nom_WL: nom_WL})
+      if (verif_WL) {
+        const verif_Film = await findOne('Films', {Title: titre})
+        // On verifie qu'il y a bien le film si il existe ou pas dans la table
+        if (verif_Film){
+          if (!listStatut.includes(statut)){
+            return res.send({Error: `Error, Le statut n'est pas valide`});
+          }
+          const result = await updateOne('Watchlists', {id: verif_WL.id, "ListeFilms.id_film": verif_Film.id}, {$set: {"ListeFilms.$.statut": statut}});
+          console.log("La note a bien été ajouté")
+          return res.send(result)
+        }
+      }
+      return res.send({Error: `Error, la wachtlist ${nom_WL} n'existe pas`});
+    }
+    return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
+  } catch (e){
+    console.log(e)
+  }
+
+}
+
 // Fonctions que je réutiliserai plus tard
 
 
@@ -426,5 +463,6 @@ module.exports = {
   favorisList,
   findWatchListUser,
   findFilmWL,
-  noteWatchList
+  noteWatchList,
+  updateItemWL
 };
