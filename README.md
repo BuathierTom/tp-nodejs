@@ -48,7 +48,7 @@
 - [ ] Modifier le statut d'un item dans une watchlist
 - [ ] Afficher les items du registre (avec possibilité de filtrer)
 - [x] Récupérer la liste des utilisateurs
-- [ ] Récupérer la liste des watchlists d'un utilisateur
+- [x] Récupérer la liste des watchlists d'un utilisateur
 - [ ] Récupérer le contenu d'une watchlist
 
 #### - Falcultatif :
