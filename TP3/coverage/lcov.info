@@ -59,7 +59,6 @@ DA:13,1
 LF:13
 LH:13
 BRDA:7,0,0,6
-BRDA:8,1,0,5
-BRF:2
-BRH:2
+BRF:1
+BRH:1
 end_of_record
