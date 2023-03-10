@@ -15,11 +15,9 @@ describe("maths.js", () => {
       expect(res).toBe(-3);
     });
     it("Doit throw une erreur car un des parametres est du mauvais type", () => {
-      try {
-        const res = addition("toto", 2);
-      } catch (e) {
-        expect(e.message).toBe("Mauvais type!");
-      }
+      expect(() => {
+        addition(1, "ttoo");
+      }).toThrow(new Error("Mauvais type!"));
     });
   });
   describe("quotient", () => {
@@ -32,18 +30,14 @@ describe("maths.js", () => {
       expect(res).toBe(0);
     });
     it("Doit throw une erreur car b vaut 0", () => {
-      try {
-        const res = quotient(2, 0);
-      } catch (e) {
-        expect(e.message).toBe("Il est impossible de diviser par 0!");
-      }
+      expect(() => {
+        quotient(4, 0);
+      }).toThrow("Il est impossible de diviser par 0!");
     });
     it("Doit throw une erreur car un des parametres est du mauvais type", () => {
-      try {
-        const res = quotient("toto", 2);
-      } catch (e) {
-        expect(e.message).toBe("Mauvais type!");
-      }
+      expect(() => {
+        quotient("toto", 2);
+      }).toThrow("Mauvais type!");
     });
   });
 });
