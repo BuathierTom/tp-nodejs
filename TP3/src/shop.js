@@ -5,7 +5,7 @@
  * Retourne les données de l'utilisateur de la liste qui correpondant à l'id 
  */
 function getUser(id, usersData) {
-  // implentez la fonction
+  return 
 }
 
 module.exports = {
