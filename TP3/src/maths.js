@@ -7,7 +7,9 @@
 function addition(a, b) {
   if (typeof a !== "number" || typeof b !== "number") {
     throw new Error("Mauvais type!");
-  }return a + b;
+  } else {
+    return a + b;
+  }
 }
 
 /**
@@ -21,7 +23,9 @@ function quotient(a, b) {
     throw new Error("Mauvais type!");
   }if (b === 0) {
     throw new Error("Il est impossible de diviser par 0!");
-  }return a / b;
+  } else {
+  return a / b;
+  }
 }
 
 module.exports = {

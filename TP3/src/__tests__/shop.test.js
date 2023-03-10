@@ -33,7 +33,7 @@ describe("shop.js", () => {
     it("Doit throw une erreur car l'id est invalide", () => {
       expect(() => {
         getUser(-1, fakeUsers);
-      }).tothrow("L'identifiant doit être un entier positif");
+      }).toThrow("L'identifiant doit être un entier positif");
     });
   });
 });
