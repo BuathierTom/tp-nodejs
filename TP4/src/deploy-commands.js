@@ -3,6 +3,8 @@ const path = require('node:path');
 const { clientId, guildId, token } = require('../conf.json');
 const fs = require('node:fs');
 
+console.log(guildId)
+
 const commandsPath = path.join(__dirname, 'commands');
 
 const commands = [];
