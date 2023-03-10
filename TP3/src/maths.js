@@ -5,7 +5,9 @@
  * Retourne la somme de a et b
  */
 function addition(a, b) {
-  return a + b;
+  if (typeof a !== "number" || typeof b !== "number") {
+    throw new Error("Mauvais type!");
+  }return a + b;
 }
 
 /**
@@ -15,7 +17,11 @@ function addition(a, b) {
  * Retourne le quotient de a et b
  */
 function quotient(a, b) {
-  return a / b;
+  if (typeof a !== "number" || typeof b !== "number") {
+    throw new Error("Mauvais type!");
+  }if (b === 0) {
+    throw new Error("Il est impossible de diviser par 0!");
+  }return a / b;
 }
 
 module.exports = {
