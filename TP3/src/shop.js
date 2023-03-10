@@ -1,3 +1,6 @@
+const { groupBy } = require ("lodash");
+const produits = require("./products.json"); 
+
 /**
  * @function
  * @param {number} id, id de l'utilisateur a rechercher
@@ -7,7 +10,7 @@
 function getUser(id, usersData) {
   if (typeof id !== "number") {
     throw new Error("L'identifiant doit être un entier positif");
-  }if (id < 0) {
+  } if (id < 0) {
     throw new Error("L'identifiant doit être un entier positif");
   } if (!Array.isArray(usersData)) {
     throw new Error("La liste des utilisateur doit être un tableau contenant des utilisateurs");
@@ -18,9 +21,9 @@ function getUser(id, usersData) {
   } else {
     return usersData[id-1]
   }
-  
- 
 }
+
+
 
 module.exports = {
   getUser,

@@ -15,7 +15,6 @@ function age(users) {
 }
 
 
-
 console.log(age(usersData));
 
 module.exports = {
