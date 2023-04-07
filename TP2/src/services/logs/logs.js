@@ -11,8 +11,22 @@ const logger = winston.createLogger({
         new winston.transports.File({ filename: "combined.log" }),
     ],
 });
-logger.log({
-    level: "info",
-    message: "Récupération  de la liste des films de l'utilisateur 123123",
-    source: "filmApi"    
-});
+
+/**
+ * Function to add a log to the log file
+ * @param {string} level - Level of the log (error, warn, info, verbose, debug, silly)
+ * @param {string} message - Message of the log (ex: "User created")
+ * @param {string} source - Source of the log (ex: users.js)    
+ */
+function addLog(level, message, source){ 
+    const query = ({
+        level: level, // error, warn, info, verbose, debug, silly (Source : https://www.npmjs.com/package/winston) 
+        message: message, // message de log (ex: "Utilisateur créé")
+        source: source // source du log (ex: users.js)
+    });
+    logger.log(query);
+}
+
+module.exports = {
+    addLog
+}

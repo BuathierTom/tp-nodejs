@@ -11,6 +11,7 @@ const {
     deleteManyUser 
 } = require("../controllers/example");
 
+// Premiere partie du TP
 router.get("/findOne", findUser);
 router.get("/insertOne", insertOneUser);
 router.get("/insertMany", insertManyUser);
