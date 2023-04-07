@@ -5,10 +5,10 @@ const { createUser,
         findWatchListUser,
         } = require("../controllers/users");
 
-// Créé un utilisateur
-router.post("/createUser", createUser)
 // Récupérer la liste des utilisateurs
 router.get("/userList", findMultipleUser)
+// Créé un utilisateur
+router.post("/createUser", createUser)
 // Permet d'afficher les watchlists en fonction d'un utilisateur
 router.get("/findWL", findWatchListUser)
 
