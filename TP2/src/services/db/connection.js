@@ -7,6 +7,9 @@ const dbName = conf.databaseName;
 // Create a new MongoClient
 const client = new MongoClient(url);
 
+/**
+ * Connect to the database
+ */
 async function connectTodB() {
     try {
         console.log('Trying to access the db...');
