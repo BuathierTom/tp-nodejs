@@ -1,3 +1,6 @@
+// npm run deploy
+// node .\app.js 
+
 const fs = require('node:fs');
 const path = require('node:path');
 const conf = require('../conf.json');
