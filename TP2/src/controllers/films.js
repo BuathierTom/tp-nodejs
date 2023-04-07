@@ -1,5 +1,6 @@
 const { v4 : uuidv4 } = require ('uuid');
 const { getFilm } = require('../repositories/omdbapi');
+const { addLog } = require("../services/logs/logs");
 
 const { findOne,  
         insertOne
@@ -13,6 +14,7 @@ async function insertFilm(req, res, next) {
 
     const verif = await findOne('Films', {Title: search})
     if (verif) {
+      addLog("error", `Error, le film ${search} existe déja`, "films.js")
       return res.send({Error: `Error, le film ${search} existe déja`});
     }
 
@@ -28,11 +30,11 @@ async function insertFilm(req, res, next) {
       Plot: film.Plot,
       Type: film.Type       
     });
-    console.log(`Insertion du film : ${search} fait !`)
+    addLog("info", `Le film ${search} a bien été ajouté`, "films.js")
     return res.send(result)
 
   } catch (e){
-    console.log(e)
+    addLog("error", e, "films.js")
   }
 }
 

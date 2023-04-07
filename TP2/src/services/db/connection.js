@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const conf = require("../../../conf.json")
+const { addLog } = require("../logs/logs");
 // Connection URI
 const url = conf.databaseUrl;
 const dbName = conf.databaseName;
@@ -12,22 +13,23 @@ const client = new MongoClient(url);
  */
 async function connectTodB() {
     try {
-        console.log('Trying to access the db...');
+        addLog("info", "Trying to access the db...", "connection.js")
         // Connect the client to the server (optional starting in v4.7)
         await client.connect();
 
         // Establish and verify connection
         await client.db('admin').command({ ping: 1 });
-        console.log('Connected successfully to server');
+        addLog("info", "Connected successfully to server", "connection.js")
     } catch (e) {
         // Ensures that the client will close when you finish/error
-        console.log(JSON.stringify(err));
+        addLog("error", e, "connection.js")
         await client.close();
         throw e;
     }
 }
 
 function getCollection(collectionName) {
+    addLog("info", `Trying to access the collection ${collectionName}...`, "connection.js")
     return client.db(dbName).collection(collectionName);
 }
 

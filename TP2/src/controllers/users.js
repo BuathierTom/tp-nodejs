@@ -15,7 +15,7 @@ async function findMultipleUser(req,res, next){
     await cursor.forEach((item)=>{
       result.push(item)
     });
-          
+    addLog("info", `Les utilisateurs ont bien été trouvés`, "users.js")
     return res.send(result)
     } catch (e){
       addLog("error", e, "users.js")
@@ -30,6 +30,7 @@ async function createUser(req, res, next) {
 
     const verif = await findOne('Utilisateurs', {pseudo: pseudo})
     if (verif) {
+      addLog("error", `Error, l'utilisateur ${pseudo} existe déja`, "users.js")
       return res.send({Error: `Error, l'utilisateur ${pseudo} existe déja`});
     }
 
@@ -53,8 +54,10 @@ async function findWatchListUser(req, res, next){
       await verif_WL.forEach((item)=>{
         result.push(item)
       });
+      addLog("info", `L'utilisateur ${pseudo} a bien été trouvé`, "users.js")
       return res.send(result)
     }
+    addLog("error", `Error, l'utilisateur ${pseudo} n'existe pas`, "users.js")
     return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
   } catch (e){
     addLog("error", e, "users.js")
