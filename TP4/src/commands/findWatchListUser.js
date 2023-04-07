@@ -1,14 +1,12 @@
 const axios = require('axios');
 const { EmbedBuilder } = require('discord.js');
 
-const {
-    SlashCommandBuilder
-} = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('find_watchlist')
+        .setName('find_watchlist_user')
         .setDescription('Liste de toute les watchlist des utilisateurs')
         .addStringOption(option =>
             option.setName('pseudo')
@@ -28,7 +26,7 @@ module.exports = {
             const errorEmbed = new EmbedBuilder()
             .setColor(0xf10909)
             .setTitle('ERROR')
-            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setURL('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Antu_dialog-error.svg/1200px-Antu_dialog-error.svg.png')
             .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
             .setDescription(resp.data.Error)
             .setTimestamp()
@@ -60,7 +58,7 @@ module.exports = {
         const winEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
             .setTitle('find_WatchList')
-            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setURL('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Emoji_u1f44d.svg/1200px-Emoji_u1f44d.svg.png')
             .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
             .setDescription(result)
             .setTimestamp()
