@@ -3,7 +3,8 @@ const { getFilm } = require('../repositories/omdbapi');
 const { addLog } = require("../services/logs/logs");
 
 const { findOne,  
-        insertOne
+        insertOne,
+        find
     } = require("../services/db/crud");
 
 async function insertFilm(req, res, next) {
@@ -38,6 +39,21 @@ async function insertFilm(req, res, next) {
   }
 }
 
+async function findMultipleFilms(req,res, next){
+  try {
+    const cursor = await find('Films', {});
+    const result=[]
+    await cursor.forEach((item)=>{
+      result.push(item)
+    });
+    addLog("info", `La liste des films a bien été récupérée`, "films.js")
+    return res.send(result)
+    } catch (e){
+      addLog("error", e, "films.js")
+    }
+}
+
 module.exports = {
   insertFilm,
+  findMultipleFilms
 };
