@@ -19,6 +19,13 @@ async  function  findOne(collectionName, query, options = {}) {
 	}
 }
 
+/**
+ * Find documents in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @param {object} options - The options to find the document
+ * @return {object} - The document found
+ */
 async  function  find(collectionName, query, options = {}) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -32,6 +39,12 @@ async  function  find(collectionName, query, options = {}) {
 	}
 }
 
+/**
+ * Insert one document in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  insertOne(collectionName, query) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -45,6 +58,12 @@ async  function  insertOne(collectionName, query) {
 	}
 }
 
+/**
+ * Insert many documents in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  insertMany(collectionName, query, options = {}) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -58,6 +77,12 @@ async  function  insertMany(collectionName, query, options = {}) {
 	}
 }
 
+/**
+ * Update one document in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  updateOne(collectionName, filter, query, options = {}) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -71,6 +96,12 @@ async  function  updateOne(collectionName, filter, query, options = {}) {
 	}
 }
 
+/**
+ * Update many documents in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  updateMany(collectionName, filter, query) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -84,6 +115,12 @@ async  function  updateMany(collectionName, filter, query) {
 	}
 }
 
+/**
+ * Replace one document in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  replace(collectionName, query, remplacement) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -97,6 +134,12 @@ async  function  replace(collectionName, query, remplacement) {
 	}
 }
 
+/**
+ * Delete one document in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  deleteOne(collectionName, query) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -110,6 +153,12 @@ async  function  deleteOne(collectionName, query) {
 	}
 }
 
+/**
+ * Delete many documents in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @return {object} - The document found
+ */
 async  function  deleteMany(collectionName, query) {
 	try {
 		const  collection = getCollection(collectionName);
@@ -122,6 +171,7 @@ async  function  deleteMany(collectionName, query) {
 		throw  e;
 	}
 }
+
 module.exports = {
 	findOne,
 	find,
