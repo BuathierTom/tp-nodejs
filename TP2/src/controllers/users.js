@@ -4,6 +4,8 @@ const { findOne,
         find, 
         insertOne, 
         } = require("../services/db/crud");
+  
+const { addLog } = require("../services/logs/logs");
 
 
 async function findMultipleUser(req,res, next){
@@ -16,7 +18,7 @@ async function findMultipleUser(req,res, next){
           
     return res.send(result)
     } catch (e){
-      console.log(e)
+      addLog("error", e, "users.js")
     }
 }
 
@@ -32,10 +34,10 @@ async function createUser(req, res, next) {
     }
 
     const result = await insertOne('Utilisateurs', {id: id, pseudo: pseudo, age: age});
-    console.log(`L'utilisateur ${pseudo}, qui a pour age : ${age} et l'id : ${id}`)
+    addLog("info", `L'utilisateur ${pseudo}, qui a pour age : ${age} et l'id : ${id}`, "users.js")
     return res.send(result)
   } catch (e){
-    console.log(e)
+    addLog("error", e, "users.js")
   }
 }
 
@@ -55,7 +57,7 @@ async function findWatchListUser(req, res, next){
     }
     return res.send({Error: `Error, l'utilisateur ${pseudo} n'existe pas`});
   } catch (e){
-    console.log(e)
+    addLog("error", e, "users.js")
   }
 }
 
