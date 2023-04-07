@@ -1,5 +1,12 @@
 const { getCollection } = require('./connection');
 
+/**
+ * Find one document in a collection
+ * @param {string} collectionName - The name of the collection
+ * @param {object} query - The query to find the document
+ * @param {object} options - The options to find the document
+ * @return {object} - The document found
+ */
 async  function  findOne(collectionName, query, options = {}) {
 	try {
 		const  collection = getCollection(collectionName);

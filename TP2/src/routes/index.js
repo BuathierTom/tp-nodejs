@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const users = require('./users');
+const example = require('./example');
+const films = require('./films');
+const watchlists = require('./watchlists');
 
 const metrics = {
     requestsCount: {},
@@ -22,6 +25,12 @@ app.use((req, res, next) => {
 });
 
 app.use('/users', users);
+
+app.use('/example', example);
+
+app.use('/films', films);
+
+app.use('/watchlists', watchlists);
 
 app.get('/', (req, res, next) => {
     return res.send('Hello World !');
