@@ -2,48 +2,28 @@ const { SlashCommandBuilder } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('info')
-        .setDescription(`commande avec sous-commande 'user' et 'server'`)
-        .addStringOption(option =>
-            option.setName('user')
-                .setDescription('Le nom du man stp')
-                .setRequired(true))
-        .addStringOption(option =>
-            option.setName('server')
-                .setDescription('Le nom du server stp')
-                .setRequired(true)),
-            
+    .setName('info')
+    .setDescription('Get info about a user or a server! | BOT TOM')
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('user')
+            .setDescription('Info about a user')
+            .addUserOption(option => option.setName('target').setDescription('The user')))
+    .addSubcommand(subcommand =>
+        subcommand
+            .setName('server')
+            .setDescription('Info about the server')),
     async execute(interaction) {
-        // On fais une boucle pour parcourir les options
-        for (const option of interaction.options.data) {
+        if (interaction.options.getSubcommand() === 'user') {
+            const user = interaction.options.getUser('target');
 
-            // On vérifie si l'option est 'user'
-            if (option.name === 'user') {
-                const serverInfoEmbed = new Discord.MessageEmbed()
-                .setColor('#0099ff')
-                .setTitle('Server Info')
-                .setDescription(`Name: ${message.guild.name}\nID: ${message.guild.id}\nRegion: ${message.guild.region}\nMembers: ${message.guild.memberCount}`)
-                message.channel.send(serverInfoEmbed);
+            if (user) {
+                await interaction.reply(`Username: ${user.username}\nID: ${user.id}`);
+            } else {
+                await interaction.reply(`This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`);
             }
-            // On vérifie si l'option est 'server'
-            if (option.name === 'server') {
-                let user;
-                if (message.mentions.users.first()) {
-                user = message.mentions.users.first();
-                } else {
-                user = message.author;
-                }
-                const userInfoEmbed = new Discord.MessageEmbed()
-                .setColor('#0099ff')
-                .setTitle('User Info')
-                .setDescription(`Username: ${user.username}\nID: ${user.id}\nCreated at: ${user.createdAt}`)
-                message.channel.send(userInfoEmbed);
-            }
-                    
-
-        
-        
+        } else if (interaction.options.getSubcommand() === 'server') {
+            await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
         }
-
-    },
+    }
 }
