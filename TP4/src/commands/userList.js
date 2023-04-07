@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('discord.js');
         
 
@@ -11,12 +12,19 @@ module.exports = {
         const cursor = resp.data;
         let result = "";
         await cursor.forEach((item)=>{
-            result += '```\n'
-            result += `User: ${item.pseudo}\n`
-            result += `ID: ${item.id}\n`
-            result += `Age: ${item.age}\n`
-            result += '```\n'
+            result += `**User:** ${item.pseudo}\n`
+            result += `**ID:** ${item.id}\n`
+            result += `**Age:** ${item.age}\n`
+            result += ` \n`
         });
-        await interaction.reply(result);
+
+        const winEmbed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle('userlist')
+            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
+            .setDescription(result)
+            .setTimestamp()
+        await interaction.reply({ embeds: [winEmbed] });
     },
 };

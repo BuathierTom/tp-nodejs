@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('discord.js');
         
 
@@ -26,9 +27,24 @@ module.exports = {
         });
 
         if (data.Error) {
-            return await interaction.reply(data.Error);
-        }
+            const errorEmbed = new EmbedBuilder()
+            .setColor(0xf10909)
+            .setTitle('ERROR')
+            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
+            .setDescription(data.Error)
+            .setTimestamp()
 
-        await interaction.reply(`L'utilisateur ${pseudo} a été créé avec succès !`);
+            return await interaction.reply({ embeds: [errorEmbed] });
+        }
+        const winEmbed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle('createUser')
+            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
+            .setDescription(`L'utilisateur **${pseudo}** a été créé avec succès !`)
+            .setTimestamp()
+
+        await interaction.reply({ embeds: [winEmbed] });
     },
 };

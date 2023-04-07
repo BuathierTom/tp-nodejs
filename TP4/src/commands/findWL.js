@@ -1,4 +1,6 @@
 const axios = require('axios');
+const { EmbedBuilder } = require('discord.js');
+
 const {
     SlashCommandBuilder
 } = require('discord.js');
@@ -23,30 +25,45 @@ module.exports = {
         });
 
         if (resp.data.Error) {
-            return await interaction.reply(resp.data.Error);
+            const errorEmbed = new EmbedBuilder()
+            .setColor(0xf10909)
+            .setTitle('ERROR')
+            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
+            .setDescription(resp.data.Error)
+            .setTimestamp()
+
+            return await interaction.reply({ embeds: [errorEmbed] });
         }
 
         const cursor = resp.data;
+
         let result = "";
         await cursor.forEach((item) => {
-            result += '```\n'
-            result += `_id: ${item._id}\n`
-            result += `id: ${item.id}\n`
-            result += `id_user: ${item.id_user}\n`
-            result += `nom_WL: ${item.nom_WL}\n`
-            result += `favoris: ${item.favoris}\n`
-            result += `liste_films: \n`
-            result += `--------------------------------------------------------------\n`
+            result += `**_id:** ${item._id}\n`
+            result += `**id:** ${item.id}\n`
+            result += `**id_user:** ${item.id_user}\n`
+            result += `**nom_WL:** ${item.nom_WL}\n`
+            result += `**favoris:** ${item.favoris}\n`
+            result += `**ListeFilms:** \n`
+            result += `-------------------------------------------------------------\n`
             // Pour tous les elements de la liste de films : 
             item.ListeFilms.forEach((film) => {
-                result += `    - ${film.id_film}\n`
-                result += `    - ${film.statut}\n`
-                result += `    - ${film.note}\n`
-                result += `--------------------------------------------------------------\n`
+                // Les ‎ sont des caractères invisibles qui permetten de faire de l'indentation dans le embed
+                result += `‎ ‎ ‎ ‎‎ ‎ ‎ ‎‎ ‎ ‎ ‎ - **id_film:** ${film.id_film}\n`
+                result += `‎ ‎ ‎ ‎‎ ‎ ‎ ‎‎ ‎ ‎ ‎ - **statut:** ${film.statut}\n`
+                result += `‎ ‎ ‎ ‎‎ ‎ ‎ ‎‎ ‎ ‎ ‎ - **note:** ${film.note}\n`
+                result += `-------------------------------------------------------------\n`
             });
-            result += '```\n'
 
         });
-        await interaction.reply(result);
+        const winEmbed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle('find_WatchList')
+            .setURL('https://github.com/BuathierTom/TP_NODES')
+            .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
+            .setDescription(result)
+            .setTimestamp()
+        await interaction.reply({ embeds: [winEmbed] });
     },
 };
