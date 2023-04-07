@@ -29,7 +29,6 @@ async function connectTodB() {
 }
 
 function getCollection(collectionName) {
-    addLog("info", `Trying to access the collection ${collectionName}...`, "connection.js")
     return client.db(dbName).collection(collectionName);
 }
 
