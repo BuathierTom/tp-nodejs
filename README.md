@@ -1,9 +1,5 @@
 # TP_NODES de TOM BUATHIER 
 
-## TP1
-
-* Toutes les routes sont faites et le TP est fini !
-
 ## TP2
 
 ### Fonctionnalité de ma WatchList : 
@@ -31,6 +27,36 @@
 - [x] Donner la possibilité d'écrire une note personnelle sur une watchlist.
 - [ ] Mettre en place une page permettant de tester les routes de notre api*
 
+# 
+
+## TP4
+
+### Mise en place des commandes pour le bot discord :
+
+#### Routes Films :
+
+- [x] Route /addFilm : **/add_film**
+- [x] Route /findFilms : **/find_films**
+
+#### Routes Users
+
+- [x] Route /userList : **/userlist**
+- [x] Route /createUser : **/create_user**
+- [x] Route /findWL : **/find_watchlist_user**
+
+#### Routes WatchLists :
+
+- [x] Route /createWL : **/create_wl**
+- [ ] Route /addFilmWL : **/addfilm_wl**
+- [ ] Route /deleteWL : **/**
+- [ ] Route /favorisWL : **/**
+- [ ] Route /favList : **/**
+- [ ] Route /findFilmWL : **/**
+- [ ] Route /noteWL : **/**
+- [ ] Route /updateItemWL : **/**
+- [ ] Route /deleteFilmWL : **/**
+ 
+ 
 #
 
 ### Conception d'entités
@@ -64,30 +90,4 @@
 * Description
 * Type (Film ou Serie)
 
-## TP4
 
-### Mise en place des commandes pour le bot discord :
-
-#### Routes Films :
-
-- [x] Route /addFilm : **/add_film**
-- [x] Route /findFilms : **/find_films**
-
-#### Routes Users
-
-- [x] Route /userList : **/userlist**
-- [x] Route /createUser : **/create_user**
-- [x] Route /findWL : **/find_watchlist_user**
-
-#### Routes WatchLists :
-
-- [x] Route /createWL : **/**
-- [ ] Route /addFilmWL : **/**
-- [ ] Route /deleteWL : **/**
-- [ ] Route /favorisWL : **/**
-- [ ] Route /favList : **/**
-- [ ] Route /findFilmWL : **/**
-- [ ] Route /noteWL : **/**
-- [ ] Route /updateItemWL : **/**
-- [ ] Route /deleteFilmWL : **/**
- 
