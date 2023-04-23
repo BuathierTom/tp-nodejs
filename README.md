@@ -54,7 +54,7 @@
 - [x] Route /findFilmWL : **/find_film_wl**
 - [x] Route /noteWL : **/note_wl**
 - [x] Route /updateItemWL : **/update_item_wl**
-- [ ] Route /deleteFilmWL : **/**
+- [x] Route /deleteFilmWL : **/delete_film_wl**
  
  
 #
