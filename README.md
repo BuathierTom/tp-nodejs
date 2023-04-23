@@ -48,7 +48,7 @@
 
 - [x] Route /createWL : **/create_wl**
 - [x] Route /addFilmWL : **/addfilm_wl**
-- [ ] Route /deleteWL : **/**
+- [x] Route /deleteWL : **/delete_wl**
 - [ ] Route /favorisWL : **/**
 - [ ] Route /favList : **/**
 - [ ] Route /findFilmWL : **/**
