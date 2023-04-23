@@ -64,3 +64,30 @@
 * Description
 * Type (Film ou Serie)
 
+## TP4
+
+### Mise en place des commandes pour le bot discord :
+
+#### Routes Films :
+
+- [x] Route /addFilm : **/add_film**
+- [x] Route /findFilms : **/find_films**
+
+#### Routes Users
+
+- [x] Route /userList : **/userlist**
+- [x] Route /createUser : **/create_user**
+- [x] Route /findWL : **/find_watchlist_user**
+
+#### Routes WatchLists :
+
+- [x] Route /createWL : **/**
+- [ ] Route /addFilmWL : **/**
+- [ ] Route /deleteWL : **/**
+- [ ] Route /favorisWL : **/**
+- [ ] Route /favList : **/**
+- [ ] Route /findFilmWL : **/**
+- [ ] Route /noteWL : **/**
+- [ ] Route /updateItemWL : **/**
+- [ ] Route /deleteFilmWL : **/**
+ 
