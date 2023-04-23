@@ -1,3 +1,6 @@
+// npm run deploy
+// node .\app.js 
+
 const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 const conf = require('../conf.json');
 const TOKEN = conf.token;

@@ -1,4 +1,4 @@
-const { axios } = require('axios');
+const axios  = require('axios');
 const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('discord.js');
 
@@ -23,8 +23,9 @@ module.exports = {
 
         const { data } = await axios.post('http://localhost:3000/watchlists/createWL', {
             "pseudo": pseudo,
-            "nom_WL": nom_WL
+            "nom_WL": nom_WL,
         });
+
 
         if (data.Error) {
             const errorEmbed = new EmbedBuilder()
@@ -42,7 +43,7 @@ module.exports = {
             .setTitle('createWL')
             .setURL('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Emoji_u1f44d.svg/1200px-Emoji_u1f44d.svg.png')
             .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
-            .setDescription(`La watchlist **${nomWL}** a été créé avec succès !`)
+            .setDescription(`La watchlist **${nom_WL}** a été créé avec succès !`)
             .setTimestamp()
 
         await interaction.reply({ embeds: [winEmbed] });
