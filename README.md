@@ -50,7 +50,7 @@
 - [x] Route /addFilmWL : **/addfilm_wl**
 - [x] Route /deleteWL : **/delete_wl**
 - [x] Route /favorisWL : **/favoris_wl**
-- [ ] Route /favList : **/**
+- [x] Route /favList : **/favoris_list_wl**
 - [ ] Route /findFilmWL : **/**
 - [ ] Route /noteWL : **/**
 - [ ] Route /updateItemWL : **/**
