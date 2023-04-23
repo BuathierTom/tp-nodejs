@@ -62,7 +62,7 @@ module.exports = {
         }
         const winEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
-            .setTitle('createWL')
+            .setTitle('AddFilmWL')
             .setURL('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Emoji_u1f44d.svg/1200px-Emoji_u1f44d.svg.png')
             .setAuthor({name: interaction.user.username, iconURL: interaction.user.avatarURL()})
             .setDescription(`Ajout du film **${titre}** a la watchlist **${nom_WL}** avec une note de **${note}** et un statut de **${statut}** avec succès! `)

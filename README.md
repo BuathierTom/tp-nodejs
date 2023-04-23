@@ -47,7 +47,7 @@
 #### Routes WatchLists :
 
 - [x] Route /createWL : **/create_wl**
-- [ ] Route /addFilmWL : **/addfilm_wl**
+- [x] Route /addFilmWL : **/addfilm_wl**
 - [ ] Route /deleteWL : **/**
 - [ ] Route /favorisWL : **/**
 - [ ] Route /favList : **/**
